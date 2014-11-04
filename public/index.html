@@ -45,6 +45,20 @@
               };
             var map = new google.maps.Map(document.getElementById('map-canvas'),
               mapOptions);
+
+            var loopLatLng = new google.maps.LatLng(41.8861,-87.6268);
+            var hwMarker = new google.maps.Marker({
+              position: loopLatLng,
+              map: map,
+              title: "Loop site"
+            });
+            var hwDescription = "Number of clients: 4036";
+            var hwInfoWindow = new google.maps.InfoWindow({
+              content: hwDescription
+            });
+            google.maps.event.addListener(hwMarker, 'click', function() {
+              hwInfoWindow.open(map,hwMarker);
+            });
           }
           else {
             alert("Geocode was not successful for the following reason: " + status);
