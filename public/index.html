@@ -29,6 +29,19 @@
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD5kixqKYpROtmFuszOFHyenWCmY0-zyFc">
     </script>
     <script type="text/javascript">
+      function addTaxSite(map, latLng, siteTitle, siteDesc) {
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map,
+          title: siteTitle
+        });
+        var infoWindow = new google.maps.InfoWindow({
+          content: siteDesc
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          infoWindow.open(map,marker);
+        });
+      }
       function initialize() {
         var latitude = NaN;
         var longitude = NaN;
@@ -45,20 +58,7 @@
               };
             var map = new google.maps.Map(document.getElementById('map-canvas'),
               mapOptions);
-
-            var loopLatLng = new google.maps.LatLng(41.8861,-87.6268);
-            var hwMarker = new google.maps.Marker({
-              position: loopLatLng,
-              map: map,
-              title: "Loop site"
-            });
-            var hwDescription = "Number of clients: 4036";
-            var hwInfoWindow = new google.maps.InfoWindow({
-              content: hwDescription
-            });
-            google.maps.event.addListener(hwMarker, 'click', function() {
-              hwInfoWindow.open(map,hwMarker);
-            });
+            addTaxSite(map,new google.maps.LatLng(41.8861, -87.6268),"Loop site","Number of clients: 4036"); // loop site
           }
           else {
             alert("Geocode was not successful for the following reason: " + status);
