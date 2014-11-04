@@ -36,7 +36,7 @@
           title: siteTitle
         });
         var infoWindow = new google.maps.InfoWindow({
-          content: '<h3>' + siteTitle + '</h3> <h5>Number of clients: ' + numClients + '</h5>'
+          content: '<h5>' + siteTitle + '</h5> <p>Number of clients: ' + numClients + '</p>'
         });
         google.maps.event.addListener(marker, 'click', function() {
           infoWindow.open(map,marker);
